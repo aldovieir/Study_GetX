@@ -16,7 +16,11 @@ class CreatEditController extends GetxController {
 
   List<UserModel> get users => _users.toList();
 
-  Future<void> addUser(String nameC, String userNameC) async {
-    _userRepository.addUser(nameC, userNameC);
+  Future<void> addUser(name, username) async {
+    _userRepository.addUser(name, username);
+  }
+
+  updateUser(id, name, username) {
+    _userRepository.updateUser(id, name, username);
   }
 }

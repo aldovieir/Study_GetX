@@ -10,6 +10,6 @@ class HomeBindings implements Bindings {
 
     Get.lazyPut(() => HomeController(Get.find()));
 
-    Get.lazyPut(() => CreatEditUser(Get.find(), Get.find()));
+    Get.lazyPut(() => CreatEditUser(Get.find()));
   }
 }

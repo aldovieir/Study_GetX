@@ -25,6 +25,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     ever(_paginationFilter, (_) => _findUsers());
+
     _changePaginationFilter(1, 15);
 
     super.onInit();
@@ -55,5 +56,9 @@ class HomeController extends GetxController {
 
   void nextPage() {
     _changePaginationFilter(_page + 1, limit);
+  }
+
+  deleteUser(id) {
+    _userRepository.deleteUser(id);
   }
 }

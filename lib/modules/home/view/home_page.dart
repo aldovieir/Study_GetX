@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Get.to(CreatEditUser(Get.find(), Get.find()));
+              Get.toNamed('/createdit');
             },
           ),
           PopupMenuButton(
@@ -55,14 +55,37 @@ class HomePage extends StatelessWidget {
             itemCount: _controller.users.length,
             itemBuilder: (BuildContext context, int index) {
               final user = _controller.users[index];
-              print(user);
-              return ListTile(
+
+              ///   final item = _controller.users[index].id.toString();
+              return /* Dismissible(
+                key: Key(item),
+                direction: DismissDirection.horizontal,
+                onDismissed: (direction) {
+                  _controller.deleteUser(_controller.users[index].id);
+
+                  Get.showSnackbar(GetBar(
+                    title: "$item foi removido",
+                  ));
+                },
+                background: Container(
+                  color: Colors.red,
+                  child: Align(
+                    alignment: Alignment(-0.9, 0),
+                    child: Icon(Icons.delete, color: Colors.white),
+                  ),
+                ),
+                child: */
+                  ListTile(
+                onLongPress: () {
+                  _controller.deleteUser(_controller.users[index].id);
+                },
                 onTap: () {
                   Get.toNamed('/createdit', arguments: user);
                 },
                 leading: Text(user.id),
                 title: Text(user.name),
                 subtitle: Text(user.username),
+                //  ),
               );
             },
           ),

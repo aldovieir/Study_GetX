@@ -1,16 +1,15 @@
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class UserModel {
   UserModel({
-    @required this.id,
-    @required this.name,
-    @required this.username,
+    this.id,
+    this.name,
+    this.username,
   });
 
-  String id;
-  String name;
-  String username;
+  final String id;
+  final String name;
+  final String username;
 
   factory UserModel.fromJson(String str) => UserModel.fromMap(json.decode(str));
 
@@ -27,4 +26,9 @@ class UserModel {
         "name": name == null ? null : name,
         "username": username == null ? null : username,
       };
+
+  static List<UserModel> fromJsonList(List list) {
+    if (list == null) return null;
+    return list.map<UserModel>((item) => UserModel.fromJson(item)).toList();
+  }
 }

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/createdit',
-          page: () => CreatEditUser(Get.find(), Get.find()),
+          page: () => CreatEditUser(Get.find()),
           binding: CreatEditBindings(),
         )
       ],

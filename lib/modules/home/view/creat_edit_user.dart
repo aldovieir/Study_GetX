@@ -1,19 +1,22 @@
+import 'package:estudo_getx/models/user_models.dart';
 import 'package:estudo_getx/modules/home/controller/creat_edit_controller.dart';
-import 'package:estudo_getx/modules/home/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class CreatEditUser extends StatelessWidget {
   final CreatEditController _controller;
-  final HomePage homePage;
 
-  CreatEditUser(this._controller, this.homePage, {Key key}) : super(key: key);
+  CreatEditUser(this._controller, {Key key}) : super(key: key);
 
   final _nameController = TextEditingController();
   final _userNameController = TextEditingController();
+  UserModel users = Get.arguments ?? UserModel();
 
   @override
   Widget build(BuildContext context) {
+    _nameController.text = users.name;
+    _userNameController.text = users.username;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -27,10 +30,12 @@ class CreatEditUser extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
-              print(_nameController);
-              _controller
-                  .addUser(_nameController.text, _userNameController.text)
-                  .then((value) => Get.toNamed('/'));
+              if (users.id == null) {
+                _controller.addUser(
+                    _nameController.text, _userNameController.text);
+              } else {
+                _controller.updateUser(users.id, users.name, users.username);
+              }
             },
           ),
         ],
